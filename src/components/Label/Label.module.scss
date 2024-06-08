@@ -1,0 +1,77 @@
+:root {
+    --white: #ffffff;
+    --black: #000000;
+}
+
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: var(--black);
+    min-width: 100px;
+    padding: 9px 16px;
+    font-weight: 700;
+    background-color: var(--white);
+    user-select: none;
+    transition: background-color 0.5s, color 0.5s, text-decoration 5s;
+    cursor: pointer;
+    + .wrapper {
+        // margin-left: 8px;
+    }
+
+    &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+    &.onlyIcon {
+        min-width: 50px;
+        min-height: 50px;
+        // padding: 5px;
+    }
+    &.forLabel {
+        padding: 0;
+    }
+    &.circle{
+        border-radius: 50%;
+        padding: 0;
+    }
+}
+
+.icon + .title,
+.title + .icon {
+    margin-left: 10px;
+}
+.primary {
+    background-color: var(--black);
+    color: var(--white);
+    border: 1px solid var(--black);
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--black);
+    }
+}
+.outline {
+    background-color: var(--white);
+    color: var(--black);
+    border: 1px solid var(--black);
+
+    &:hover {
+        background-color: var(--black);
+        color: var(--white);
+    }
+}
+.text {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.small {
+    min-width: 70px;
+    padding: 4px 11px;
+}
+.large {
+    width: 100%;
+}

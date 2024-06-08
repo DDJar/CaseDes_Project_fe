@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+.groups__routes__bars {
+    display: none;
+}
+.auth{
+    margin-top: 0.1rem;
+    display: flex;
+}
+.groups__routes__routes{
+    display: block;
+}
+
+@media only screen and (max-width: 53rem) {
+    .groups__routes__routes {
+        display: none;
+    }
+    .groups__routes__bars {
+        display: block;
+    }
+}

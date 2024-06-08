@@ -1,0 +1,44 @@
+.wrapper {
+  //background-color: red;
+  display: flex;
+
+  .toolsBar {
+    // display: flex;
+    //background-color: aqua;
+    .toolsDraw {
+      //background-color: aquamarine;
+    }
+    .toolsStyle {
+      //background-color: bisque;
+    }
+
+    .image {
+      //background-color: #32486a;
+      .image__list {
+        display: flex;
+      }
+    }
+  }
+  .draw {
+    .toolsEdit {
+      width: 100%;
+      //background-color: #63a66a;
+      display: flex;
+      width: 100%;
+      flex-wrap: nowrap;
+      text-align: left;
+    }
+    .canvas {
+      //background-color: #a01489;
+    }
+  }
+}
+.card__image__btn_Modal {
+  display: flex;
+  .imagephoneCase {
+    width: 15rem;
+    background-color: aqua;
+  }
+  .selectPhoneCase {
+  }
+}

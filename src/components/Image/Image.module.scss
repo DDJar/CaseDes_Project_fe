@@ -1,0 +1,18 @@
+.wrapper {
+  position: relative;
+  width: 8rem;
+}
+
+.topRight {
+  top: 0;
+  right: 0;
+  position: absolute;
+  display: none; 
+}
+
+.wrapper:hover .topRight {
+  display: block; 
+}
+img {
+  width: 100%;
+}
