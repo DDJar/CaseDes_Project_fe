@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
@@ -45,6 +44,7 @@ export default function ProductTableRow({
 
     useEffect(() => {
         fetchData();
+      
     }, []);
   
     const fetchData = async () => {
@@ -62,6 +62,7 @@ export default function ProductTableRow({
   };
 
   const handleCloseMenu = () => {
+    console.log(products);
     setOpen(null);
   };
 

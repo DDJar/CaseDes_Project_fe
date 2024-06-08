@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { CreateCartOrder, GetListProductOnCard } from "../../service/CartService";
-import { Link, useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { GetListProductOnCard } from "../../service/CartService";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Carts() {
   const [cartData, setCartData] = useState([]);
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
-     fetchData();
+    fetchData();
   }, []);
 
   const fetchData = async () => {
     const response = await GetListProductOnCard();
-    const filteredResponse = response.filter(item =>  item.status === 'unpaid');
+    const filteredResponse = response.filter(
+      (item) => item.status === "unpaid"
+    );
     console.log(response);
     setCartData(filteredResponse);
     let totalPrice = 0;
@@ -22,7 +24,7 @@ function Carts() {
     }
     console.log(totalPrice);
     setTotal(parseFloat(totalPrice.toFixed(2)));
-  }
+  };
   const oderTotal = {
     subtotal: total,
     shipping: 2,
@@ -44,13 +46,11 @@ function Carts() {
   const onClickPayment = () => {
     const userIdCookie = Cookies.get("userId");
     if (userIdCookie) {
-      const userId = JSON.parse(userIdCookie);
-     // CreateCartOrder(userId, cartData, total);
       navigate("/payment");
     } else {
       window.location.href = "/";
     }
-  }
+  };
 
   return (
     <div className="container">
@@ -85,12 +85,14 @@ function Carts() {
             </div>
             {cartData.map((cartsdata, index) => {
               return (
-                <div
-                  className="flex items-center -mx-8 px-6 py-5"           
-                >
+                <div className="flex items-center -mx-8 px-6 py-5">
                   <div className="flex w-2/5">
                     <div className="w-20">
-                      <img className="h-20" src={cartsdata.productId.images[0]} alt="" />
+                      <img
+                        className="h-20"
+                        src={cartsdata.productId.images[0]}
+                        alt=""
+                      />
                     </div>
                     <div className="flex flex-col justify-between ml-4 flex-grow">
                       <span className="font-bold text-xl">
@@ -180,8 +182,10 @@ function Carts() {
                 </p>
               </div>
             </div>
-            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-              onClick={() => onClickPayment()}>
+            <button
+              className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              onClick={() => onClickPayment()}
+            >
               payment
             </button>
           </div>

@@ -3,13 +3,11 @@ import {
   faArrowRotateRight,
   faBold,
   faBroom,
-  faCartShopping,
   faCircle,
   faCircleChevronDown,
   faCircleChevronUp,
   faCloudArrowUp,
   faFloppyDisk,
-  faImage,
   faItalic,
   faLinesLeaning,
   faObjectGroup,
@@ -17,9 +15,7 @@ import {
   faRotateLeft,
   faSquareFull,
   faTextWidth,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { faMeetup } from "@fortawesome/free-brands-svg-icons";
 
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -382,6 +378,7 @@ function ExodDraw() {
     };
     try {
       const res = await phoneCaseDesignPost(data);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -515,11 +512,11 @@ function ExodDraw() {
   }
   function handleChangeBrand(brand) {
     setPhoneBrand(brand);
-    if(brand === "Iphone"){
-    console.log("iphone")
-      setBackgroundImage(backgroundImageIphone)
+    if (brand === "Iphone") {
+      console.log("iphone");
+      setBackgroundImage(backgroundImageIphone);
     } else {
-      setBackgroundImage(backgroundImageSamsung)
+      setBackgroundImage(backgroundImageSamsung);
     }
   }
   return (

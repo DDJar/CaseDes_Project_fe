@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
 import { create_payment } from "../../service/PaymentService";
 import Cookies from "js-cookie";
@@ -25,11 +25,8 @@ const Payment = () => {
     address: "",
     phoneNumber: "",
   });
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const userIdCookie = Cookies.get("userId");
     if (userIdCookie) {
       const userId = JSON.parse(userIdCookie);
@@ -39,21 +36,26 @@ const Payment = () => {
       );
       setCartData(filteredResponse);
       console.log("Cart data", filteredResponse);
+
       let totalPrice = 0;
       for (let i = 0; i < response.length; i++) {
         totalPrice += response[i].totalPrice;
       }
+
       setAmount(parseFloat(totalPrice.toFixed(2)) * 25457);
       setuserDetail({
         ...userDetail,
         quantity: response.length,
-        useId: userId,
+        userId: userId,
         totalPrice: parseFloat(totalPrice.toFixed(2)),
       });
     } else {
       window.location.href = "/";
     }
-  };
+  }, [userDetail]);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const validation = (value) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || /^\d{10}$/.test(value);

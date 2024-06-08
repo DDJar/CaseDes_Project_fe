@@ -55,10 +55,9 @@ const Register = (props) => {
       ) {
         if (userRegiste.passwords === confiromPass) {
           if (errors) {
-            let res;
             console.log(userRegiste);
             try {
-              res = await postRegist(userRegiste);
+              await postRegist(userRegiste);
               window.location.href = `/`;
             } catch (error1) {
               if (
@@ -87,7 +86,7 @@ const Register = (props) => {
 
   const handleGoogleLogin = async () => {
     try {
-      const data = initiateGoogleLogin();
+      initiateGoogleLogin();
     } catch (error) {
       console.error("Axios Error:", error);
     }

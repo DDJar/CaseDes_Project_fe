@@ -1,4 +1,4 @@
-import { useState ,useEffect} from 'react';
+import { useState ,useEffect,useCallback} from 'react';
 import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from '../../../components/Admin/label';
 import Iconify from '../../../components/Admin/iconify';
-import { getAllUser, getUserById } from '../../../service/UserService';
+import { getUserById } from '../../../service/UserService';
 
 // ----------------------------------------------------------------------
 
@@ -39,18 +39,18 @@ export default function UserTableRow({
   const [open, setOpen] = useState(null);
   const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-  
-    const fetchData = async () => {
-        try {
-            const userList = await getUserById(userId);
-            setUsers(userList);
-        } catch (error) {
-            console.error('Error fetching product data:', error);
-        }
-    };
+  const fetchData = useCallback(async () => {
+    try {
+      const userList = await getUserById(userId);
+      setUsers(userList);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }, [userId]); 
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -105,7 +105,7 @@ export default function UserTableRow({
         <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
 
         <TableCell>
-          <Label color={(status === 'Block' && 'error') || 'success'}>{status}</Label>
+          <Label color={(status === 'Block' && 'error') || 'success'}>{users.status}</Label>
         </TableCell>
 
         <TableCell align="right">

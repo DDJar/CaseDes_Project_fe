@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   getProductById,
@@ -28,61 +28,65 @@ const ProductDetail = () => {
   const [openComent, setOpenComent] = useState(false);
   const navigate = useNavigate();
   const [userDetail, setuserDetail] = useState({});
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const fetchData = useCallback(async () => {
+    try {
+      const productData = await getProductById(id);
+      console.log(productData);
+      setProductDetail(productData);
+      setActiveImage(productData.images[0]);
 
-  const fetchData = async () => {
-    const productData = await getProductById(id);
-    console.log(productData);
-    setProductDetail(productData);
-    setActiveImage(productData.images[0]);
+      const userIdCookie = Cookies.get("userId");
+      if (userIdCookie) {
+        const userId = JSON.parse(userIdCookie);
+        const userData = await getUserById(userId);
+        setuserDetail(userData);
+        const response = await GetListProductOnCard();
+        const filteredResponse = response.filter(
+          (item) =>
+            item.productId._id === id &&
+            item.userId === userId &&
+            item.status === "paid"
+        );
+        if (filteredResponse.length > 0) {
+          setOpenComent(true);
+        }
 
-    const userIdCookie = Cookies.get("userId");
-    if (userIdCookie) {
-      const userId = JSON.parse(userIdCookie);
-      const userData = await getUserById(userId);
-      setuserDetail(userData);
-      const response = await GetListProductOnCard();
-      const filteredResponse = response.filter(
-        (item) =>
-          item.productId._id === id &&
-          item.userId === userId &&
-          item.status === "paid"
-      );
-      if (filteredResponse.length > 0) {
-        setOpenComent(true);
+        const userLike = productData.totalLike.find(
+          (like) => like.userId === userId
+        );
+        setLiked(!!userLike);
+      } else {
+        setOpenComent(false);
       }
 
-      const userLike = productData.totalLike.find(
-        (like) => like.userId === userId
+      const feedbackCheck = await GetAllFeeback();
+      const filteredFeedBack = feedbackCheck.filter(
+        (item) => item.product._id === id
       );
-      setLiked(!!userLike);
-    } else {
-      setOpenComent(false);
+
+      const sortedFeedbacks = filteredFeedBack
+        .filter((item) => item.product._id === id)
+        .sort((a, b) => {
+          const timeA = new Date(a.updatedAt || a.createdAt).getTime();
+          const timeB = new Date(b.updatedAt || b.createdAt).getTime();
+          return timeB - timeA;
+        })
+        .map((item) => ({
+          ...item,
+          createdAt: new Date(item.createdAt).toLocaleDateString(),
+          updatedAt: item.updatedAt
+            ? new Date(item.updatedAt).toLocaleDateString()
+            : null,
+        }));
+      setComments(sortedFeedbacks);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
     }
+  }, [id]);
 
-    const feedbackCheck = await GetAllFeeback();
-    const filteredFeedBack = feedbackCheck.filter(
-      (item) => item.product._id === id
-    );
-
-    const sortedFeedbacks = filteredFeedBack
-      .filter((item) => item.product._id === id)
-      .sort((a, b) => {
-        const timeA = new Date(a.updatedAt || a.createdAt).getTime();
-        const timeB = new Date(b.updatedAt || b.createdAt).getTime();
-        return timeB - timeA;
-      })
-      .map((item) => ({
-        ...item,
-        createdAt: new Date(item.createdAt).toLocaleDateString(),
-        updatedAt: item.updatedAt
-          ? new Date(item.updatedAt).toLocaleDateString()
-          : null,
-      }));
-    setComments(sortedFeedbacks);
-  };
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     const userIdCookie = Cookies.get("userId");

@@ -15,7 +15,7 @@ const ResetPass = () => {
   const userID = userId.split("$")[0];
   useEffect(() => {
     window.localStorage.removeItem("inputType");
-  }, [1]);
+  }, []);
   const handResetPass = async () => {
     if (resetPass.passwords === resetPass.confirmPassword) {
       const formReset = {

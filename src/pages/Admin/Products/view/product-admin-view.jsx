@@ -6,7 +6,6 @@ import Table from "@mui/material/Table";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import TableBody from "@mui/material/TableBody";
-import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -16,7 +15,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FilledInput,
   FormControl,
   InputAdornment,
   InputLabel,
@@ -38,7 +36,6 @@ import {
   UpdateProduct,
   getProductList,
 } from "../../../../service/ProductService";
-import axios from "axios";
 // import {
 //   Dialog,
 //   DialogTitle,
@@ -285,7 +282,6 @@ export default function ProductPage() {
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
-            const formData = new FormData(event.currentTarget);
             handleSubmit(event);
             handleCloseEditModal();
           },

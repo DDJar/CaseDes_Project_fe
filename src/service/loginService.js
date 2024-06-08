@@ -39,7 +39,7 @@ export const postRegist = async (RegistDTO) => {
   try {
     const response = await axios.post("/users/register", RegistDTO);
 
-    const { token, info, userId, role } = response.data;
+    const { token, info, userId } = response.data;
     setAuthToken({ token, info, userId });
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } catch (error) {

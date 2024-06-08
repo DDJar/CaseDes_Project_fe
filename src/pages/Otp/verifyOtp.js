@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { verifyOtp ,sendOtp} from '../../service/OtpService';
+import React, { useState } from "react";
+import { verifyOtp, sendOtp } from "../../service/OtpService";
 
 const VerifyOTP = () => {
   const [error, setError] = useState("");
-  const [otpInputs, setOtpInputs] = useState(['', '', '', '', '', '']);
+  const [otpInputs, setOtpInputs] = useState(["", "", "", "", "", ""]);
   const handleSendCode = async () => {
     try {
       const otpForm = {
-        emailOrPhone: window.localStorage.getItem('inputType')
-      }
+        emailOrPhone: window.localStorage.getItem("inputType"),
+      };
       const response = await sendOtp(otpForm);
-      console.log(response.data.emailOrPhone)
+      console.log(response.data.emailOrPhone);
     } catch (error) {
       console.error(error);
-      setError('Error sending verification code');
+      setError("Error sending verification code");
     }
   };
   const handleVerifyOTP = async () => {
     try {
       const verifyForm = {
-        emailOrPhone: window.localStorage.getItem('inputType'),
-        otp: otpInputs.join('')
-      }
+        emailOrPhone: window.localStorage.getItem("inputType"),
+        otp: otpInputs.join(""),
+      };
       const response = await verifyOtp(verifyForm);
       if (response.data.success) {
-        window.location.href =response.data.redirectUrl;
-        console.log(response)
+        window.location.href = response.data.redirectUrl;
+        console.log(response);
       }
     } catch (error) {
       console.error(error);
-      setError('Error verifying OTP');
+      setError("Error verifying OTP");
     }
   };
   const handleInputChange = (index, value) => {
@@ -63,11 +63,13 @@ const VerifyOTP = () => {
                   {otpInputs.map((value, index) => (
                     <div key={index} className="w-16 h-16">
                       <input
-                       id={`otpInput-${index}`}
+                        id={`otpInput-${index}`}
                         className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                         type="text"
                         value={value}
-                        onChange={(e) => handleInputChange(index, e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(index, e.target.value)
+                        }
                       />
                     </div>
                   ))}
@@ -75,13 +77,23 @@ const VerifyOTP = () => {
 
                 <div className="flex flex-col space-y-5">
                   <div>
-                    <button onClick={handleVerifyOTP} className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm">
+                    <button
+                      onClick={handleVerifyOTP}
+                      className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
+                    >
                       Send Verification OTP
                     </button>
                   </div>
 
                   <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
-                    <p>Didn't receive code?</p> <a className="flex flex-row items-center text-blue-600"  target="_blank" rel="noopener noreferrer" onClick={handleSendCode}>Resend</a>
+                    <p>Didn't receive code?</p>{" "}
+                    <button
+                      className="flex flex-row items-center text-blue-600"
+                      target="_blank"
+                      onClick={handleSendCode}
+                    >
+                      Resend
+                    </button>
                   </div>
                 </div>
               </div>

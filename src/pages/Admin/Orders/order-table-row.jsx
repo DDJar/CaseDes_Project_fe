@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useCallback} from 'react';
 import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
@@ -11,11 +11,8 @@ import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
-import Label from '../../../components/Admin/label';
 import Iconify from '../../../components/Admin/iconify';
-import { getProductList } from '../../../service/ProductService';
 import { getUserById } from '../../../service/UserService';
-import { Button } from '@mui/material';
 export default function ProductTableRow({
   selected,
   orderId,
@@ -29,23 +26,20 @@ export default function ProductTableRow({
 }) {
   
   const [open, setOpen] = useState(null);
-  const [products, setProducts] = useState([]);
   const [user, setUser] = useState({});
 
+  const fetchData = useCallback(async () => {
+    try {
+      console.log(userId);
+      const userData = await getUserById(userId);
+      setUser(userData);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }, [userId]);
     useEffect(() => {
-        fetchData();
-    }, []);
-  
-    const fetchData = async () => {
-        try {
-          console.log(userId);
-          const userData = await getUserById(userId);
-          setUser(userData);
-        } catch (error) {
-            console.error('Error fetching product data:', error);
-        }
-    };
-
+      fetchData();
+    }, [fetchData]);
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
