@@ -65,8 +65,8 @@ export const resetPasswords = async (ResetForm) => {
   }
 };
 export const initiateGoogleLogin = () => {
-  window.location.href = `${process.env.HOST_NODEJS}/auth/google`;
+  window.location.href = `https://case-shop-be.onrender.com/auth/google`;
 };
 export const initiateFacebookLogin = () => {
-  window.location.href = `${process.env.HOST_NODEJS}/auth/facebook`;
+  window.location.href = `https://case-shop-be.onrender.com/auth/facebook`;
 };
