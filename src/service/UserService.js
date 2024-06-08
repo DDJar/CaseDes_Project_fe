@@ -59,3 +59,11 @@ export const updateAvatar = async (imageFile) => {
     throw error;
   }
 };
+export const CreateUser = async (FormDataCreate) => {
+  try {
+    const response = await axios.post("/users/create-user", FormDataCreate);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

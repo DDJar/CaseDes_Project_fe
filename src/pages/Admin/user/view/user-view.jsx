@@ -36,8 +36,8 @@ import {
   updateUserById,
   getAllRole,
   getUserById,
+  CreateUser,
 } from "../../../../service/UserService";
-import { postRegist } from "../../../../service/loginService";
 import Cookies from "js-cookie";
 // ----------------------------------------------------------------------
 
@@ -85,10 +85,8 @@ export default function UserPage() {
     }
   };
   const handleOpenEditModal =async (createOrEdit, userId) => {
-    console.log("Product data", userId);
-    let useDetail =  await getUserById(userId);
+    let useDetail = user.find((users) => users._id === userId);
     setUserData(useDetail);
-    console.log("Product data", useDetail);
     setOpenEditModal(true);
     setIsCreate(createOrEdit === "create" ? true : false);
   };
@@ -203,7 +201,7 @@ export default function UserPage() {
           passwords: formData.get("passwords"),
         };
         console.log("User saved:", userCreate);
-        const response = await postRegist(userCreate);
+        const response = await CreateUser(userCreate);
 
         console.log("User saved:", response);
         fetchData();
