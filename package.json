@@ -21,13 +21,13 @@
     "@testing-library/user-event": "^13.5.0",
     "@tippyjs/react": "^4.2.6",
     "aos": "^2.3.4",
-    "dotenv": "^16.4.5",
     "axios": "^1.6.7",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap": "^5.3.2",
     "classnames": "^2.5.1",
     "crypto-js": "^4.2.0",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
     "js-cookie": "^3.0.5",
     "perfect-freehand": "^1.2.0",
     "react": "^18.2.0",
@@ -70,6 +70,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "webpack": "^5.91.0"
   }
 }
