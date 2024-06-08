@@ -75,7 +75,7 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          src={`http://localhost:5000/imageUpload/${userInfor.imgAvt}`}
+          src={`https://case-shop-be.onrender.com/imageUpload/${userInfor.imgAvt}`}
           alt="User Avatar"
           sx={{
             width: 36,
