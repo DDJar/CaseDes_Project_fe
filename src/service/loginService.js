@@ -65,8 +65,8 @@ export const resetPasswords = async (ResetForm) => {
   }
 };
 export const initiateGoogleLogin = () => {
-  window.location.href = "http://localhost:5000/auth/google";
+  window.location.href = `${process.env.HOST_NODEJS}/auth/google`;
 };
 export const initiateFacebookLogin = () => {
-  window.location.href = "http://localhost:5000/auth/facebook";
+  window.location.href = `${process.env.HOST_NODEJS}/auth/facebook`;
 };
