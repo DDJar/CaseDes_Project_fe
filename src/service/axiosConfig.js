@@ -21,7 +21,7 @@ const getCookieExpiration = (cookieName) => {
 };
 
 const instance = axios.create({
-  baseURL: process.env.HOST_NODEJS,
+  baseURL: "https://case-shop-be.onrender.com",
 });
 
 instance.interceptors.request.use((config) => {
