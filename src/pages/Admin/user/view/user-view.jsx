@@ -362,7 +362,7 @@ export default function UserPage() {
               id="role"
               name="role"
               label="Role"
-              defaultValue={isCreate ? "" : usertData.role[0]._id}
+              defaultValue={isCreate ? "" : usertData.role}
             >
               {roleList.map((role, index) => (
                 <MenuItem

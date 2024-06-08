@@ -101,7 +101,7 @@ export default function UserTableRow({
         <TableCell>{email}</TableCell>
         <TableCell>{phoneNumber}</TableCell>
         <TableCell>{gender}</TableCell>
-        <TableCell>{address}{status}</TableCell>
+        <TableCell>{address}</TableCell>
         <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
 
         <TableCell>
