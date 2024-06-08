@@ -101,11 +101,11 @@ export default function UserTableRow({
         <TableCell>{email}</TableCell>
         <TableCell>{phoneNumber}</TableCell>
         <TableCell>{gender}</TableCell>
-        <TableCell>{address}{users.status}</TableCell>
+        <TableCell>{address}{status}</TableCell>
         <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
 
         <TableCell>
-          <Label color={(status === 'Block' && 'error') || 'success'}>{users.status}</Label>
+          <Label color={(status === 'Block' && 'error') || 'success'}>{status}</Label>
         </TableCell>
 
         <TableCell align="right">
