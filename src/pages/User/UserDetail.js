@@ -162,7 +162,7 @@ const UpdateUser = () => {
             <div className="col-span-full">
               <div className="mt-2 flex items-center gap-x-3">
                 <img
-                  src={`${process.env.HOST_NODEJS}/imageUpload/${userDetail.imgAvt}`}
+                  src={`https://case-shop-be.onrender.com/imageUpload/${userDetail.imgAvt}`}
                   className="h-20 w-20 text-gray-300 rounded-full"
                   alt=""
                 />

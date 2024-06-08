@@ -158,7 +158,7 @@ function NavBar() {
                     <a href="/user">
                       <img
                         className="h-12 w-12 rounded-full"
-                        src={`${process.env.HOST_NODEJS}/imageUpload/${userInfor.imgAvt}`}
+                        src={`https://case-shop-be.onrender.com/imageUpload/${userInfor.imgAvt}`}
                         alt="User Avatar"
                       />
                     </a>

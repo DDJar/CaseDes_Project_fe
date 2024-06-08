@@ -333,7 +333,7 @@ const ProductDetail = () => {
                     <div className="flex items-center">
                       <img
                         className="mr-2 w-6 h-6 rounded-full"
-                        src={`http://localhost:5000/imageUpload/${comment.user.imgAvt}`}
+                        src={`https://case-shop-be.onrender.com/imageUpload/${comment.user.imgAvt}`}
                         alt="Jese Leos"
                       />
                       <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">

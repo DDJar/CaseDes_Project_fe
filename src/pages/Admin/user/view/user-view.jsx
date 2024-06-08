@@ -470,7 +470,7 @@ export default function UserPage() {
                     address={row.address}
                     status={row.status}
                     role={row.role}
-                    imgAvt={process.env.HOST_NODEJS+"/imageUpload/" + row.imgAvt}
+                    imgAvt={"https://case-shop-be.onrender.com/imageUpload/" + row.imgAvt}
                     isVerified={row.isVerified}
                     selected={selected.indexOf(row.firstName) !== -1}
                     handleClick={(event) => handleClick(event, row.firstName)}
