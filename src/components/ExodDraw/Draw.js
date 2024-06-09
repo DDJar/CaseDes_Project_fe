@@ -371,7 +371,7 @@ function ExodDraw() {
       name: userData ? userData.firstName + " " + userData.lastName : "Default",
       description: inforPhoneCase.description,
       image: JSON.stringify(dataURL),
-      phoneBrand: phoneBrands,
+      phoneBrand: phoneBrand,
       phoneModel: inforPhoneCase.phoneModel,
       elements: elements,
       price: inforPhoneCase.price,
