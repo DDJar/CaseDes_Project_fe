@@ -27,11 +27,6 @@ const MENU_OPTIONS = [
     urlTo:"/user",
     icon: "eva:person-fill",
   },
-  {
-    label: "Settings",
-    urlTo:"#",
-    icon: "eva:settings-2-fill",
-  },
 ];
 
 // ----------------------------------------------------------------------

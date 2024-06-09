@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -22,14 +22,25 @@ import Scrollbar from '../../../src/components/Admin/scrollbar';
 
 import { NAV } from './config-layout';
 import navConfig from './config-navigation';
+import { getUserById } from "../../service/UserService";
 
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
   const pathname = usePathname();
-
+  const [userInfor, setuserInfor] = useState("");
   const upLg = useResponsive('up', 'lg');
-
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const userIdCookie = Cookies.get("userId");
+    if (userIdCookie) {
+      const userId = JSON.parse(userIdCookie);
+      const userData = await getUserById(userId);
+      setuserInfor(userData);
+    }
+  };
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -50,14 +61,10 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src={account.photoURL} alt="photoURL" />
+      <Avatar src={`https://case-shop-be.onrender.com/imageUpload/${userInfor.imgAvt}`} alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.displayName}</Typography>
-
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {account.role}
-        </Typography>
+        <Typography variant="subtitle2">{userInfor.firstName+ " " + userInfor.lastName}</Typography>
       </Box>
     </Box>
   );
@@ -68,35 +75,6 @@ export default function Nav({ openNav, onCloseNav }) {
         <NavItem key={item.title} item={item} />
       ))}
     </Stack>
-  );
-
-  const renderUpgrade = (
-    <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-      <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
-        <Box
-          component="img"
-          src={require(`../../assets/illustrations/illustration_avatar.png`)}
-          sx={{ width: 100, position: 'absolute', top: -50 }}
-        />
-
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h6">Get more?</Typography>
-
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
-            From only $69
-          </Typography>
-        </Box>
-
-        <Button
-          href="https://material-ui.com/store/items/minimal-dashboard/"
-          target="_blank"
-          variant="contained"
-          color="inherit"
-        >
-          Upgrade to Pro
-        </Button>
-      </Stack>
-    </Box>
   );
 
   const renderContent = (
@@ -117,8 +95,6 @@ export default function Nav({ openNav, onCloseNav }) {
       {renderMenu}
 
       <Box sx={{ flexGrow: 1 }} />
-
-      {renderUpgrade}
     </Scrollbar>
   );
 
