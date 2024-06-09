@@ -53,7 +53,13 @@ export function applyFilter({ inputData, comparator, filterName }) {
     inputData = inputData.filter((user) =>
       Object.entries(user).some(([key, value]) => {
         if (key === "dob" && isDate(value)) {
-          return value === filterName;
+          const dobParts = value.split("/");
+          const filterParts = filterName.split("/");
+          return (
+            dobParts[0] === filterParts[0] &&
+            dobParts[1] === filterParts[1] &&
+            dobParts[2] === filterParts[2]
+          );
         } else if (
           typeof value === "string" &&
           value.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
