@@ -9,21 +9,16 @@ import Avatar from '@mui/material/Avatar';
 import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
-
 import { usePathname } from '../../router/hooks';
 import { RouterLink } from '../../router/components';
-
 import { useResponsive } from '../../../src/hooks/use-responsive';
-
-import { account } from '../../../src/_mock/account';
-
 import Logo from '../../../src/components/Admin/logo';
 import Scrollbar from '../../../src/components/Admin/scrollbar';
 
 import { NAV } from './config-layout';
 import navConfig from './config-navigation';
 import { getUserById } from "../../service/UserService";
-
+import Cookies from "js-cookie";
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
