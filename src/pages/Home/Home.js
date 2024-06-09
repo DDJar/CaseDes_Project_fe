@@ -65,7 +65,6 @@ const Home = () => {
       <Banner data={BannerData} />
       <Banner data={BannerData2} />
       <Products />
-      <Partners />
       <Popup orderPopup={orderPopup} handleOrderPopup={handleOrderPopup} />
     </div>
   );
