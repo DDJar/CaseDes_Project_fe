@@ -73,13 +73,7 @@ export default function UserTableRow({
     handleCloseMenu();
     handleClickUnBlock();
   }
-  function formatDate(isoDateString) {
-    const date = new Date(isoDateString);
-    const day = date.getDate().toString().padStart(2, '0'); 
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
-    const year = date.getFullYear();
-    return `${year}-${month}-${day}`;
-  }
+
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
@@ -96,7 +90,7 @@ export default function UserTableRow({
           </Stack>
         </TableCell>
         <TableCell>{lastName}</TableCell>
-        <TableCell>{formatDate(dob)}</TableCell>
+        <TableCell>{dob}</TableCell>
 
         <TableCell>{email}</TableCell>
         <TableCell>{phoneNumber}</TableCell>
