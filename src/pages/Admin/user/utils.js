@@ -34,7 +34,10 @@ export function getComparator(order, orderBy) {
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
-
+function isDate(value) {
+  const dobRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+  return dobRegex.test(value);
+}
 export function applyFilter({ inputData, comparator, filterName }) {
   const stabilizedThis = inputData.map((el, index) => [el, index]);
 
@@ -48,11 +51,17 @@ export function applyFilter({ inputData, comparator, filterName }) {
 
   if (filterName) {
     inputData = inputData.filter((user) =>
-      Object.values(user).some(
-        (value) =>
+      Object.entries(user).some(([key, value]) => {
+        if (key === "dob" && isDate(value)) {
+          return value === filterName;
+        } else if (
           typeof value === "string" &&
           value.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
-      )
+        ) {
+          return true;
+        }
+        return false;
+      })
     );
   }
 
