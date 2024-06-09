@@ -30,7 +30,6 @@ export default function ProductTableRow({
 
   const fetchData = useCallback(async () => {
     try {
-      console.log(userId);
       const userData = await getUserById(userId);
       setUser(userData);
     } catch (error) {

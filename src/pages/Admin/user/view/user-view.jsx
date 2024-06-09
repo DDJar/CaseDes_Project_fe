@@ -146,7 +146,6 @@ export default function UserPage() {
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = user.map((n) => n.firstName);
-      console.log(newSelecteds);
       setSelected(newSelecteds);
       return;
     }
@@ -200,10 +199,7 @@ export default function UserPage() {
           role: formData.get("role"),
           passwords: formData.get("passwords"),
         };
-        console.log("User saved:", userCreate);
         const response = await CreateUser(userCreate);
-
-        console.log("User saved:", response);
         fetchData();
         handleCloseEditModal();
       } catch (error) {
@@ -217,10 +213,7 @@ export default function UserPage() {
           email: formData.get("email"),
           role: formData.get("role"),
         };
-        console.log(userUpdate);
         const response = await updateUserById(usertData._id, userUpdate);
-
-        console.log("Product updated:", response);
         fetchData();
         handleCloseEditModal();
       } catch (error) {

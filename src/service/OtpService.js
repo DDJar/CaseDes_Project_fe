@@ -1,7 +1,6 @@
 import axios from "./axiosConfig";
 export const sendOtp = async (otpForm) => {
   try {
-    console.log(otpForm);
     const response = await axios.post("/author/sendOtp", otpForm);
     return response;
   } catch (error) {

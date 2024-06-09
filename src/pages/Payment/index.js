@@ -38,7 +38,6 @@ const Payment = () => {
         (item) => item.userId === userId && item.status === "unpaid"
       );
       setCartData(filteredResponse);
-      console.log("Cart data", filteredResponse);
       let totalPrice = 0;
       for (let i = 0; i < response.length; i++) {
         totalPrice += response[i].totalPrice;
@@ -123,7 +122,6 @@ const Payment = () => {
           };
           toast.success("successful");
           const response = await create_payment(userUpdate, bankCode);
-          console.log("Response:", response); // Log the response object
           window.location.href = response.data.paymentUrl;
         } else {
           toast.error("Not choose method payment failed");

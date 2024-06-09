@@ -56,7 +56,7 @@ function TemplatePhoneCase() {
         setTemplates(Array.isArray(res.data) ? res.data : []);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   useEffect(() => {

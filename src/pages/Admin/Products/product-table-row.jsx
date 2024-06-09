@@ -50,7 +50,6 @@ export default function ProductTableRow({
     const fetchData = async () => {
         try {
             const productList = await getProductList();
-            console.log(productList);
             setProducts(productList);
         } catch (error) {
             console.error('Error fetching product data:', error);
@@ -62,7 +61,6 @@ export default function ProductTableRow({
   };
 
   const handleCloseMenu = () => {
-    console.log(products);
     setOpen(null);
   };
 

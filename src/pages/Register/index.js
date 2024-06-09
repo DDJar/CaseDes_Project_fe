@@ -55,7 +55,6 @@ const Register = (props) => {
       ) {
         if (userRegiste.passwords === confiromPass) {
           if (errors) {
-            console.log(userRegiste);
             try {
               await postRegist(userRegiste);
               window.location.href = `/`;
@@ -105,7 +104,6 @@ const Register = (props) => {
   const handleInputChange = (field, value) => {
     setUserRegist({ ...userRegiste, [field]: value });
 
-    // Validation logic
     switch (field) {
       case "firstName":
         setErrors({

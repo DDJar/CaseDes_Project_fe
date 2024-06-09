@@ -19,7 +19,6 @@ export const logout = async () => {
 
 export const postLogin = async (LoginDTO) => {
   try {
-    console.log(LoginDTO);
     const response = await axios.post("/users/login", LoginDTO);
 
     const { token, info, userId, isBlock } = response.data;
@@ -54,9 +53,6 @@ export const resetPasswords = async (ResetForm) => {
       "/users/reset-password/" + ResetForm.userId,
       ResetForm
     );
-
-    console.log("Response:", response.data);
-
     return response;
   } catch (error) {
     console.error("Axios Error:", error);

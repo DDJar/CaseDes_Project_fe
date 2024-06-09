@@ -63,7 +63,6 @@ const ListProduct = () => {
   const fetchData = async () => {
     try {
       const productList = await getProductList();
-      console.log(productList);
       setProducts(Array.isArray(productList) ? productList : []);
     } catch (error) {
       console.error("Error fetching product data:", error);

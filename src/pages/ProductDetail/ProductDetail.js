@@ -34,7 +34,6 @@ const ProductDetail = () => {
 
   const fetchData = async () => {
     const productData = await getProductById(id);
-    console.log(productData);
     setProductDetail(productData);
     setActiveImage(productData.images[0]);
 
@@ -93,8 +92,6 @@ const ProductDetail = () => {
         product: id,
         content: newComment,
       };
-      console.log(comment);
-      // setComments([...comments, comment]);
       await CreateFeeback(comment.user, comment.product, comment.content);
       fetchData();
       setNewComment("");
@@ -105,7 +102,6 @@ const ProductDetail = () => {
     const userIdCookie = Cookies.get("userId");
     if (userIdCookie) {
       const userId = JSON.parse(userIdCookie);
-      console.log(userId);
       if (liked) {
         await unlikeProduct(id, userId);
         setLiked(false);
@@ -137,21 +133,17 @@ const ProductDetail = () => {
   };
   const handleAddToCart = () => {
     const userIdCookie = Cookies.get("userId");
-    const userId = JSON.parse(userIdCookie);
-    console.log(
-      productDetail._id,
-      amount,
-      userId,
-      amount * productDetail?.price?.amount
-    );
-    AddItemToCart(
-      productDetail._id,
-      amount,
-      userId,
-      amount * productDetail?.price?.amount,
-      "unpaid"
-    );
-    navigate("/carts");
+    if (userIdCookie) {
+      const userId = JSON.parse(userIdCookie);
+      AddItemToCart(
+        productDetail._id,
+        amount,
+        userId,
+        amount * productDetail?.price?.amount,
+        "unpaid"
+      );
+      navigate("/carts");
+    }
   };
 
   return (

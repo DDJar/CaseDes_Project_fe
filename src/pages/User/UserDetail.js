@@ -94,7 +94,6 @@ const UpdateUser = () => {
         (value) => value === ""
       );
       if (!hasErrors && !isMissingDetail) {
-        console.log(userDetail);
         const userIdCookie = Cookies.get("userId");
         const userId = JSON.parse(userIdCookie);
         const userUpdate = {
@@ -121,7 +120,6 @@ const UpdateUser = () => {
           Cookies.set("info", JSON.stringify(infoUser), {
             expires: expirationDate,
           });
-          console.log(infoUser);
           toast.success("successful");
         } else {
           toast.error("Update user profile faild");

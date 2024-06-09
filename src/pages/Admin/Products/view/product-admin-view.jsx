@@ -84,7 +84,6 @@ export default function ProductPage() {
   const fetchData = async () => {
     try {
       const productList = await getProductList();
-      console.log(productList);
       setProducts(productList);
     } catch (error) {
       console.error("Error fetching product data:", error);
@@ -103,8 +102,6 @@ export default function ProductPage() {
 
     formJson.images = formJson.images.split(",").map((url) => url.trim());
 
-    console.log(formJson); // Xử lý dữ liệu form
-
     if(isCreate) {
       try {
         const response = await CreateProduct(
@@ -120,8 +117,6 @@ export default function ProductPage() {
           formJson.material,
           formJson.bought
         );
-  
-        console.log("Product saved:", response);
         fetchData();
         handleCloseEditModal();
       } catch (error) {
@@ -143,8 +138,6 @@ export default function ProductPage() {
           formJson.material,
           formJson.bought
         );
-  
-        console.log("Product updated:", response);
         fetchData();
         handleCloseEditModal();
       } catch (error) {
@@ -153,10 +146,8 @@ export default function ProductPage() {
     }
   };
   const handleOpenEditModal = (createOrEdit, productId) => {
-    console.log(productId);
     let productData  = products.find((product) => product._id === productId);
     setProductData(productData);
-    console.log("Product data",productData);
     setOpenEditModal(true);
     setIsCreate(createOrEdit === "create" ? true : false);
   };
@@ -166,7 +157,6 @@ export default function ProductPage() {
   };
 
   const handleOpenDeleteModal = (productId) => {
-    console.log("Product ID", productId);
     setSelectedProductId(productId); // Cập nhật selectedProductId với giá trị productId truyền vào
     setOpenDeleteModal(true);
   };
@@ -229,10 +219,8 @@ export default function ProductPage() {
     filterName,
   });
   const handleConfirmDelete = async () => {
-    console.log("id", selectedProductId);
     try {
       await DeleteProduct(selectedProductId);
-      console.log("id", selectedProductId);
       // Sau khi xóa sản phẩm thành công, cập nhật lại danh sách sản phẩm
       fetchData();
       handleCloseDeleteModal();

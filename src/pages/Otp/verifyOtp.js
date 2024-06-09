@@ -10,7 +10,6 @@ const VerifyOTP = () => {
         emailOrPhone: window.localStorage.getItem("inputType"),
       };
       const response = await sendOtp(otpForm);
-      console.log(response.data.emailOrPhone);
     } catch (error) {
       console.error(error);
       setError("Error sending verification code");
@@ -25,7 +24,6 @@ const VerifyOTP = () => {
       const response = await verifyOtp(verifyForm);
       if (response.data.success) {
         window.location.href = response.data.redirectUrl;
-        console.log(response);
       }
     } catch (error) {
       console.error(error);

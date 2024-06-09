@@ -16,13 +16,11 @@ function Carts() {
     const filteredResponse = response.filter(
       (item) => item.status === "unpaid"
     );
-    console.log(response);
     setCartData(filteredResponse);
     let totalPrice = 0;
     for (let i = 0; i < filteredResponse.length; i++) {
       totalPrice += filteredResponse[i].totalPrice;
     }
-    console.log(totalPrice);
     setTotal(parseFloat(totalPrice.toFixed(2)));
   };
   const oderTotal = {

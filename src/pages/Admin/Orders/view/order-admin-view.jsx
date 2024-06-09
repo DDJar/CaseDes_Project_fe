@@ -75,7 +75,6 @@ export default function ProductPage() {
   const fetchData = async () => {
     try {
       const orderList = await GetCartOrder();
-      console.log(orderList);
       setOrders(orderList);
     } catch (error) {
       console.error("Error fetching order data:", error);
@@ -94,8 +93,6 @@ export default function ProductPage() {
 
     formJson.images = formJson.images.split(",").map((url) => url.trim());
 
-    console.log(formJson); // Xử lý dữ liệu form
-
     if(isCreate) {
       try {
         const response = await CreateProduct(
@@ -111,8 +108,6 @@ export default function ProductPage() {
           formJson.material,
           formJson.bought
         );
-  
-        console.log("Product saved:", response);
         fetchData();
         handleCloseEditModal();
       } catch (error) {
@@ -134,8 +129,7 @@ export default function ProductPage() {
           formJson.material,
           formJson.bought
         );
-  
-        console.log("Product updated:", response);
+
         fetchData();
         handleCloseEditModal();
       } catch (error) {
@@ -146,7 +140,6 @@ export default function ProductPage() {
   const handleOpenEditModal = (createOrEdit, productId) => {
     let productData  = orders.find((product) => product._id === productId);
     setProductData(productData);
-    console.log("Product data",productData);
     setOpenEditModal(true);
     setIsCreate(createOrEdit === "create" ? true : false);
   };
@@ -156,7 +149,6 @@ export default function ProductPage() {
   };
 
   const handleOpenDeleteModal = (productId) => {
-    console.log("Product ID", productId);
     setSelectedProductId(productId); // Cập nhật selectedProductId với giá trị productId truyền vào
     setOpenDeleteModal(true);
   };
@@ -219,11 +211,8 @@ export default function ProductPage() {
     filterName,
   });
   const handleConfirmDelete = async () => {
-    console.log("id", selectedProductId);
     try {
       await DeleteProduct(selectedProductId);
-      console.log("id", selectedProductId);
-      // Sau khi xóa sản phẩm thành công, cập nhật lại danh sách sản phẩm
       fetchData();
       handleCloseDeleteModal();
     } catch (error) {
@@ -234,13 +223,11 @@ export default function ProductPage() {
   const handleOpenCartItemsModal = async (items) => {
     const updatedItems = await Promise.all(items.map(async (item) => {
       const product = await getProductById(item.productId);
-      console.log(product);
       item.name = product.name;
       item.price = product.price.amount;
       item.currency = product.price.currency;
       return item;
     }));
-    console.log(updatedItems);
     setCartItems(updatedItems);
     setOpenCartItemsModal(true);
   }

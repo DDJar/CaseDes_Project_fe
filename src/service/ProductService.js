@@ -3,7 +3,6 @@ export const getProductById = async (id) => {
   try {
     const response = await axios.get("/products/" + id);
     const productInfo = response.data;
-    console.log(productInfo);
     return productInfo;
   } catch (error) {
     throw error;
@@ -14,7 +13,6 @@ export const getProductList = async () => {
   try {
     const response = await axios.get("/products");
     const products = response.data;
-    console.log(products);
     return products;
   } catch (error) {
     throw error;
@@ -24,7 +22,6 @@ export const getProductFilter = async (formFilter) => {
   try {
     const response = await axios.post("/products/filter", formFilter);
     const products = response.data;
-    console.log(products);
     return products;
   } catch (error) {
     throw error;
@@ -59,8 +56,6 @@ export const CreateProduct = async (
     };
     const response = await axios.post("/products", body);
     const productData = response.data;
-    console.log(productData);
-
     return productData;
   } catch (error) {
     throw error;
@@ -96,8 +91,6 @@ export const UpdateProduct = async (
     };
     const response = await axios.put("/products/" + producId, body);
     const productData = response.data;
-    console.log(productData);
-
     return productData;
   } catch (error) {
     throw error;
@@ -107,8 +100,6 @@ export const DeleteProduct = async (id) => {
   try {
     const response = await axios.delete("/products/" + id);
     const productData = response.data;
-    console.log(productData);
-
     return productData;
   } catch (error) {
     throw error;

@@ -5,7 +5,6 @@ export const getAllUser = async () => {
     const userIfor = response.data;
     return userIfor;
   } catch (error) {
-    console.log(error.response.status);
     return error.response.status;
   }
 };
@@ -15,7 +14,6 @@ export const getAllRole = async () => {
     const roleInfo = response.data;
     return roleInfo;
   } catch (error) {
-    console.log(error.response.status);
     return error.response.status;
   }
 };
