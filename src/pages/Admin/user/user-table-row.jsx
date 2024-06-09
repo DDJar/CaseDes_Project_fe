@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from '../../../components/Admin/label';
 import Iconify from '../../../components/Admin/iconify';
-import { getUserById } from '../../../service/UserService';
+import { getUserById,getAllUser } from '../../../service/UserService';
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ export default function UserTableRow({
 
   const fetchData = useCallback(async () => {
     try {
-      const userList = await getUserById(userId);
+      const userList = await getAllUser();
       setUsers(userList);
     } catch (error) {
       console.error('Error fetching user data:', error);
