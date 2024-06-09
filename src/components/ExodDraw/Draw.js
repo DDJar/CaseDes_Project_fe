@@ -514,8 +514,10 @@ function ExodDraw() {
     setPhoneBrand(brand);
     if (brand === "Iphone") {
       console.log("iphone");
+      setPhoneBrand(phoneBrands[0]);
       setBackgroundImage(backgroundImageIphone);
     } else {
+      setPhoneBrand(phoneBrands[1]);
       setBackgroundImage(backgroundImageSamsung);
     }
   }
