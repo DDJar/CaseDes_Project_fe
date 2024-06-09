@@ -38,6 +38,11 @@ function isDate(value) {
   const dobRegex = /^\d{2}\/\d{2}\/\d{4}$/;
   return dobRegex.test(value);
 }
+function formatDate(inputDate) {
+  const parts = inputDate.split("/");
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
+
 export function applyFilter({ inputData, comparator, filterName }) {
   const stabilizedThis = inputData.map((el, index) => [el, index]);
 
@@ -50,16 +55,12 @@ export function applyFilter({ inputData, comparator, filterName }) {
   inputData = stabilizedThis.map((el) => el[0]);
 
   if (filterName) {
+    const formattedFilterName = formatDate(filterName);
+
     inputData = inputData.filter((user) =>
       Object.entries(user).some(([key, value]) => {
         if (key === "dob" && isDate(value)) {
-          const dobParts = value.split("/");
-          const filterParts = filterName.split("/");
-          return (
-            dobParts[0] === filterParts[0] &&
-            dobParts[1] === filterParts[1] &&
-            dobParts[2] === filterParts[2]
-          );
+          return value === formattedFilterName;
         } else if (
           typeof value === "string" &&
           value.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
