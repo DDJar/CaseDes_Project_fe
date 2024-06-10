@@ -16,13 +16,8 @@ const Login = (props) => {
   const [viewPass, setviewPass] = useState(true);
   useEffect(() => {
     const storedCookie = Cookies.get("info");
-    const messageCookie = Cookies.get("message");
     if (storedCookie) {
       window.location.href = `/`;
-    }
-    if (messageCookie) {
-      const messageC = JSON.parse(messageCookie);
-      setError(messageC);
     }
   }, []);
   const handViewPass = () => {
