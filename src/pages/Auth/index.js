@@ -5,25 +5,37 @@ import { getUserById } from "../../service/UserService";
 import Cookies from "js-cookie";
 
 const AuthGG = () => {
-  let { userId } = useParams();
+  const { userId } = useParams();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userDataResponse = await getUserById(userId.split("$")[0].trim());
-        setUserData(userDataResponse);
-        const infoUser = {
-          firstName: userDataResponse?.firstName || "",
-          lastName: userDataResponse?.lastName || "",
-          imgAvt: userDataResponse?.imgAvt || "",
-        };
-        setAuthToken({
-          token: userId.split("$")[1].trim(),
-          info: infoUser,
-          userId: userId.split("$")[0].trim(),
-        });
-        window.location.href = `/`;
+        if (userId) {
+          const userIdParts = userId.split("$");
+          const userID = userIdParts[0]?.trim();
+          const token = userIdParts[1]?.trim();
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate() + 7);
+          expirationDate.setHours(expirationDate.getHours() + 7);
+          Cookies.set("token", JSON.stringify(token), {
+            expires: expirationDate,
+          });
+          Cookies.set("userId", JSON.stringify(userId), {
+            expires: expirationDate,
+          });
+
+          const userDataResponse = await getUserById(userID);
+          setUserData(userDataResponse);
+          const infoUser = {
+            firstName: userDataResponse?.firstName || "",
+            lastName: userDataResponse?.lastName || "",
+            imgAvt: userDataResponse?.imgAvt || "",
+          };
+          Cookies.set("info", JSON.stringify(infoUser), {
+            expires: expirationDate,
+          });
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
