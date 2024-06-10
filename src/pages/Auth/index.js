@@ -21,7 +21,7 @@ const AuthGG = () => {
           Cookies.set("token", JSON.stringify(token), {
             expires: expirationDate,
           });
-          Cookies.set("userId", JSON.stringify(userId), {
+          Cookies.set("userId", JSON.stringify(userID), {
             expires: expirationDate,
           });
 
