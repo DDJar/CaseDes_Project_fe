@@ -6,13 +6,9 @@ const AuthGG = () => {
   let { userId } = useParams();
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
     const userID = userId.split("$")[0];
     const token = userId.split("$")[1];
-    const userData = await getUserById(userID);
+    const userData = getUserById(userID);
     const infoUser = {
       firstName: userData.firstName,
       lastName: userData.lastName,
@@ -20,7 +16,7 @@ const AuthGG = () => {
     };
     setAuthToken({ token, infoUser, userID });
     window.location.href = "/";
-  };
+  }, []);
 };
 
 export default AuthGG;
