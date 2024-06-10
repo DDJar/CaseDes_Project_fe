@@ -7,33 +7,26 @@ const AuthGG = () => {
   let { userId } = useParams();
   const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    const userID = userId.split("$")[0].trim();
-    const token = userId.split("$")[1].trim();
+  const userID = userId.split("$")[0].trim();
+  const token = userId.split("$")[1].trim();
+
+  try {
+    const userDataResponse = getUserById(userID);
+    setUserData(userDataResponse);
+    const infoUser = {
+      firstName: userDataResponse?.firstName || "",
+      lastName: userDataResponse?.lastName || "",
+      imgAvt: userDataResponse?.imgAvt || "",
+    };
     console.log(userID);
     console.log(token);
-
-    const fetchData = async () => {
-      try {
-        const userDataResponse = await getUserById(userID);
-        setUserData(userDataResponse);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchData();
-
-    const infoUser = {
-      firstName: userData?.firstName || "",
-      lastName: userData?.lastName || "",
-      imgAvt: userData?.imgAvt || "",
-    };
-
+    console.log(infoUser);
     setAuthToken({ token, infoUser, userID });
-  }, [userId, userData]);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
 
-  return null; // or loading component
+  return null;
 };
 
 export default AuthGG;
