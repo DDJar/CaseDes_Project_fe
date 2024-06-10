@@ -31,7 +31,6 @@ const AuthGG = () => {
     };
 
     setAuthToken({ token, infoUser, userID });
-    window.location.href = "/";
   }, [userId, userData]);
 
   return null; // or loading component
