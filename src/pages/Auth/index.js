@@ -8,14 +8,14 @@ const AuthGG = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const userID = userId.split("$")[0];
-    const token = userId.split("$")[1];
+    const userID = userId.split("$")[0].trim;
+    const token = userId.split("$")[1].trim;
     console.log(userID);
     console.log(token);
 
     const fetchData = async () => {
       try {
-        const userDataResponse = await getUserById(userID);
+        const userDataResponse = await getUserById(userID.trim);
         setUserData(userDataResponse);
       } catch (error) {
         console.error("Error fetching user data:", error);
