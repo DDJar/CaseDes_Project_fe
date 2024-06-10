@@ -12,7 +12,7 @@ const ResetPass = () => {
     confirmPassword: "",
   });
   let { userId } = useParams();
-  const userID = userId.split("$")[0];
+  const userID = userId.split("$")[0].trim();
   useEffect(() => {
     window.localStorage.removeItem("inputType");
   }, []);
