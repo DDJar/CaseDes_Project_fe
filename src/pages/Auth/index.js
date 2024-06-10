@@ -35,6 +35,7 @@ const AuthGG = () => {
           Cookies.set("info", JSON.stringify(infoUser), {
             expires: expirationDate,
           });
+          window.location.href = `/`;
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
