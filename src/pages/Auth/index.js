@@ -2,29 +2,35 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { setAuthToken } from "../../service/loginService";
 import { getUserById } from "../../service/UserService";
+import Cookies from "js-cookie";
 
 const AuthGG = () => {
   let { userId } = useParams();
   const [userData, setUserData] = useState(null);
 
-  const userID = userId.split("$")[0].trim();
-  const token = userId.split("$")[1].trim();
-
-  try {
-    const userDataResponse = getUserById(userID);
-    setUserData(userDataResponse);
-    const infoUser = {
-      firstName: userDataResponse?.firstName || "",
-      lastName: userDataResponse?.lastName || "",
-      imgAvt: userDataResponse?.imgAvt || "",
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userDataResponse = await getUserById(userId.split("$")[0].trim());
+        setUserData(userDataResponse);
+        const infoUser = {
+          firstName: userDataResponse?.firstName || "",
+          lastName: userDataResponse?.lastName || "",
+          imgAvt: userDataResponse?.imgAvt || "",
+        };
+        setAuthToken({
+          token: userId.split("$")[1].trim(),
+          info: infoUser,
+          userId: userId.split("$")[0].trim(),
+        });
+        window.location.href = `/`;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
     };
-    console.log(userID);
-    console.log(token);
-    console.log(infoUser);
-    setAuthToken({ token, infoUser, userID });
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-  }
+
+    fetchData();
+  }, [userId]);
 
   return null;
 };
