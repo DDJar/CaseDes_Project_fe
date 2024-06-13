@@ -1,28 +1,29 @@
 import axios from "./axiosConfig";
-import Cookies from "js-cookie";
-
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 export const setAuthToken = ({ token, info, userId }) => {
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 7);
   expirationDate.setHours(expirationDate.getHours() + 7);
-  Cookies.set("token", JSON.stringify(token), {
+  cookies.set("token", JSON.stringify(token), {
     expires: expirationDate,
     httpOnly: true,
   });
-  Cookies.set("userId", JSON.stringify(userId), {
+  cookies.set("userId", JSON.stringify(userId), {
     expires: expirationDate,
     httpOnly: true,
   });
-  Cookies.set("info", JSON.stringify(info), {
+  cookies.set("info", JSON.stringify(info), {
     expires: expirationDate,
     httpOnly: true,
   });
 };
+
 export const logout = async () => {
-  axios.get("/users/logout");
-  Cookies.remove("token");
-  Cookies.remove("userId");
-  Cookies.remove("info");
+  await axios.get("/users/logout");
+  cookies.remove("token");
+  cookies.remove("userId");
+  cookies.remove("info");
   delete axios.defaults.headers.common["Authorization"];
   window.location.href = `/`;
 };
