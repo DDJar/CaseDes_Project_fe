@@ -8,7 +8,7 @@ import {
 } from "../../service/CartService";
 const Payment = () => {
   const [cartData, setCartData] = useState([]);
-  const [amount, setAmount] = useState("10000");
+  const [amount, setAmount] = useState("");
   const [bankCode, setBankCode] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [userDetail, setuserDetail] = useState({
@@ -39,8 +39,8 @@ const Payment = () => {
       );
       setCartData(filteredResponse);
       let totalPrice = 0;
-      for (let i = 0; i < response.length; i++) {
-        totalPrice += response[i].totalPrice;
+      for (let i = 0; i < filteredResponse.length; i++) {
+        totalPrice += filteredResponse[i].totalPrice;
       }
       setAmount(parseFloat(totalPrice.toFixed(2)) * 25457);
       setuserDetail({
@@ -327,7 +327,7 @@ const Payment = () => {
                           </select>
                         </div>
                       </div>
-                      {cartData && (
+                      {cartData.length !== 0 ? (
                         <div className="mt-2 flex-col flex justify-center items-center">
                           <button
                             onClick={handleSubmit}
@@ -336,6 +336,8 @@ const Payment = () => {
                             Payment
                           </button>
                         </div>
+                      ) : (
+                        <></>
                       )}
                     </div>
                   </div>
