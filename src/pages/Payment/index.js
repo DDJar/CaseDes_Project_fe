@@ -327,14 +327,16 @@ const Payment = () => {
                           </select>
                         </div>
                       </div>
-                      <div className="mt-2 flex-col flex justify-center items-center">
-                        <button
-                          onClick={handleSubmit}
-                          className="mt-8 w-52 border border-transparent hover:border-gray-300 bg-gray-900 hover:bg-white text-white hover:text-gray-900 items-center py-4 rounded"
-                        >
-                          Payment
-                        </button>
-                      </div>
+                      {cartData && (
+                        <div className="mt-2 flex-col flex justify-center items-center">
+                          <button
+                            onClick={handleSubmit}
+                            className="mt-8 w-52 border border-transparent hover:border-gray-300 bg-gray-900 hover:bg-white text-white hover:text-gray-900 items-center py-4 rounded"
+                          >
+                            Payment
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
