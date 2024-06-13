@@ -1,7 +1,8 @@
 import React from 'react';
 import Heading from '../Shared/Heading';
 import ProductCard from './ProductCard';
-
+import { useEffect } from 'react';
+import { getProductList } from '../../service/ProductService';
 // images import
 import Img1 from '../../assets/casdes/13.png';
 import Img2 from '../../assets/casdes/14.png';
@@ -72,14 +73,28 @@ const ProductsData2 = [
     },
 ];
 const Products = () => {
+    const [product,setProduct] = useState([])
+    useEffect(() => {
+        fetchData();
+      }, []);
+    
+      const fetchData = async () => {
+        try {
+            const productList = await getProductList();
+            console.log(productList);
+            const firstTenProducts = Array.isArray(productList) ? productList.slice(0, 10) : [];
+            setProduct(firstTenProducts);
+        } catch (error) {
+          console.error("Error fetching product data:", error);
+        }
+      };
     return (
         <div>
             <div className="container">
                 {/* Header section */}
                 <Heading title="Our Products" subtitle={'Explore Our Products'} />
                 {/* Body section */}
-                <ProductCard data={ProductsData} />
-                <ProductCard data={ProductsData2} />
+                <ProductCard data={product} />
             </div>
         </div>
     );
