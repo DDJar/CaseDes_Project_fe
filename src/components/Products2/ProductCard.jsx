@@ -30,7 +30,7 @@ const ProductCard = ({ data }) => {
                             <div className="hidden group-hover:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-full w-full text-center group-hover:backdrop-blur-sm justify-center items-center duration-200 rounded-md space-x-2">
                             {userIdCookie ?(
                                 <>
-                                 <button className='bg-primary text-white text-lg' onClick={()=>handleAddToCart(data._id,1,data?.price?.amount)}>Add to cart </button>
+                                 <Button handler={()=>handleAddToCart(data._id,1,data?.price?.amount)} text={'Add to cart'} bgColor={'bg-primary'} textColor={'text-white'} textSize={'text-lg'} />{' '}
                                 </>
                             ):(<></>)}
                            
