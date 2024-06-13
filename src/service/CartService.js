@@ -42,7 +42,7 @@ export const GetListProductOnCard = async () => {
 };
 export const DeleteCart = async (cartId) => {
   try {
-    const response = await axios.get("/cart/" + cartId);
+    const response = await axios.delete("/cart/" + cartId);
     const cartData = response.data;
     return cartData;
   } catch (error) {
