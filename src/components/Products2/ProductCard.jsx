@@ -2,10 +2,8 @@ import React from 'react';
 import Button from '../Shared/Button';
 import { Link } from 'react-router-dom';
 import { AddItemToCart } from "../../service/CartService";
-import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 const ProductCard = ({ data }) => {
-    const navigate = useNavigate();
     const handleAddToCart = (productId, quantity, price) => {
         const userIdCookie = Cookies.get("userId");
         if(userIdCookie){
@@ -17,7 +15,7 @@ const ProductCard = ({ data }) => {
               1*price,
               "unpaid"
             );
-            navigate("/carts");
+            window.location.href = "/carts"
         }
       };
     return (

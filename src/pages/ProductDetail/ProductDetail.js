@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getProductById,
   likeProduct,
@@ -26,7 +26,6 @@ const ProductDetail = () => {
   const [editContent, setEditContent] = useState("");
   const [liked, setLiked] = useState(false);
   const [openComent, setOpenComent] = useState(false);
-  const navigate = useNavigate();
   const [userDetail, setuserDetail] = useState({});
   useEffect(() => {
     fetchData();
@@ -142,7 +141,7 @@ const ProductDetail = () => {
         amount * productDetail?.price?.amount,
         "unpaid"
       );
-      navigate("/carts");
+      window.location.href = "/carts";
     }
   };
 
