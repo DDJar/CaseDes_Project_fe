@@ -1,5 +1,5 @@
 import axios from "./axiosConfig";
-import Cookies from "js-cookies";
+import Cookies from "js-cookie";
 export const setAuthToken = ({ token, info, userId }) => {
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 7);
