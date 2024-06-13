@@ -43,7 +43,6 @@
     "sass": "^1.70.0",
     "simplebar-react": "^3.2.5",
     "tailwindcss": "^3.4.1",
-    "universal-cookie": "^7.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
