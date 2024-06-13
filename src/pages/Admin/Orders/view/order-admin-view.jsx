@@ -516,7 +516,7 @@ export default function ProductPage() {
         justifyContent="space-between"
         mb={5}
       >
-        <h2 className="text-2xl font-bold">List Product</h2>
+        <h2 className="text-2xl font-bold">List Orders History</h2>
 
         <Button
           variant="contained"
@@ -524,7 +524,7 @@ export default function ProductPage() {
           onClick={() => handleOpenEditModal("create",  {})}
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          New Product
+          New Order
         </Button>
       </Stack>
 
