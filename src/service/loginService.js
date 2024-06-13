@@ -8,11 +8,11 @@ export const setAuthToken = ({ token, info, userId }) => {
     expires: expirationDate,
     httpOnly: true,
   });
-  Cookies.save("userId", JSON.stringify(userId), {
+  cookie.save("userId", JSON.stringify(userId), {
     expires: expirationDate,
     httpOnly: true,
   });
-  Cookies.save("info", JSON.stringify(info), {
+  cookie.save("info", JSON.stringify(info), {
     expires: expirationDate,
     httpOnly: true,
   });
