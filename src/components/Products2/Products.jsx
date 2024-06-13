@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Heading from '../Shared/Heading';
 import ProductCard from './ProductCard';
 import { useEffect } from 'react';
