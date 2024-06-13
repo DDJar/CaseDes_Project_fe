@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { AddItemToCart } from "../../service/CartService";
 import Cookies from "js-cookie";
 const ProductCard = ({ data }) => {
+    const userIdCookie = Cookies.get("userId");
     const handleAddToCart = (productId, quantity, price) => {
-        const userIdCookie = Cookies.get("userId");
         if(userIdCookie){
             const userId = JSON.parse(userIdCookie);
             AddItemToCart(
@@ -28,8 +28,12 @@ const ProductCard = ({ data }) => {
                             <img src={data.images} alt="" className="h-[250px] w-[260px] object-cover rounded-md" />
                             {/* hover button */}
                             <div className="hidden group-hover:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-full w-full text-center group-hover:backdrop-blur-sm justify-center items-center duration-200 rounded-md space-x-2">
-                            <button className='bg-primary text-white text-lg' onClick={()=>handleAddToCart(data._id,1,data?.price?.amount)}>Add to cart </button>
-                                {/* Adjust button size */}
+                            {userIdCookie ?(
+                                <>
+                                 <button className='bg-primary text-white text-lg' onClick={()=>handleAddToCart(data._id,1,data?.price?.amount)}>Add to cart </button>
+                                </>
+                            ):(<></>)}
+                           
                                 <Link
                         key={data._id}
                         to={`/products/${data._id}`}
