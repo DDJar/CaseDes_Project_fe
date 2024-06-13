@@ -31,6 +31,7 @@ const filters = [
     id: "phoneModel",
     name: "Phone Model",
     options: [
+      { value: "iPhone 15", label: "iPhone 15", checked: false },
       { value: "iPhone 14", label: "iPhone 14", checked: false },
       { value: "iPhone 13", label: "iPhone 13", checked: false },
       { value: "Galaxy S21", label: "Galaxy S21", checked: false },
