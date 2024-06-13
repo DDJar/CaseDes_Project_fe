@@ -1,5 +1,6 @@
 import axios from "./axiosConfig";
 import cookie from "react-cookie";
+import Cookies from "js-cookie";
 export const setAuthToken = ({ token, info, userId }) => {
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 7);
@@ -19,9 +20,9 @@ export const setAuthToken = ({ token, info, userId }) => {
 };
 export const logout = async () => {
   axios.get("/users/logout");
-  cookie.remove("token");
-  cookie.remove("userId");
-  cookie.remove("info");
+  Cookies.remove("token");
+  Cookies.remove("userId");
+  Cookies.remove("info");
   delete axios.defaults.headers.common["Authorization"];
   window.location.href = `/`;
 };
