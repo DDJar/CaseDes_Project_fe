@@ -1,19 +1,19 @@
 import axios from "./axiosConfig";
-import cookie from "react-cookie";
+import { bake_cookie } from "react-cookie";
 import Cookies from "js-cookie";
 export const setAuthToken = ({ token, info, userId }) => {
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 7);
   expirationDate.setHours(expirationDate.getHours() + 7);
-  cookie.save("token", JSON.stringify(token), {
+  bake_cookie("token", JSON.stringify(token), {
     expires: expirationDate,
     httpOnly: true,
   });
-  cookie.save("userId", JSON.stringify(userId), {
+  bake_cookie("userId", JSON.stringify(userId), {
     expires: expirationDate,
     httpOnly: true,
   });
-  cookie.save("info", JSON.stringify(info), {
+  bake_cookie("info", JSON.stringify(info), {
     expires: expirationDate,
     httpOnly: true,
   });
