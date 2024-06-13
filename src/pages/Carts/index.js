@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetListProductOnCard } from "../../service/CartService";
+import { GetListProductOnCard, DeleteCart } from "../../service/CartService";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -49,7 +49,10 @@ function Carts() {
       window.location.href = "/";
     }
   };
-
+  const handeDelete = async (cartId) => {
+    await DeleteCart(cartId);
+    fetchData();
+  };
   return (
     <div className="container">
       <a href="/" className="flex font-semibold text-indigo-600 text-sm mt-10">
@@ -100,12 +103,12 @@ function Carts() {
                         {cartsdata.productId.phoneModel}
                       </span>
                       <div>
-                        <a
-                          href="/"
+                        <button
+                          onClick={handeDelete(cartsdata._id)}
                           className="font-semibold hover:text-red-500 text-gray-500 text-lg"
                         >
                           Remove
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>

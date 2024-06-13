@@ -40,7 +40,15 @@ export const GetListProductOnCard = async () => {
     throw error;
   }
 };
-
+export const DeleteCart = async (cartId) => {
+  try {
+    const response = await axios.get("/cart" + cartId);
+    const cartData = response.data;
+    return cartData;
+  } catch (error) {
+    throw error;
+  }
+};
 export const CreateCartOrder = async (userId, cartItems, totalPrice) => {
   try {
     const body = { userId, cartItems, totalPrice };
