@@ -80,7 +80,6 @@ const Products = () => {
       const fetchData = async () => {
         try {
             const productList = await getProductList();
-            console.log(productList);
             const firstTenProducts = Array.isArray(productList) ? productList.slice(0, 10) : [];
             setProduct(firstTenProducts);
         } catch (error) {
