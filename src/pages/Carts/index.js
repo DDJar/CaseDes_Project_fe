@@ -104,7 +104,7 @@ function Carts() {
                       </span>
                       <div>
                         <button
-                          onClick={handeDelete(cartsdata._id)}
+                          onClick={() => handeDelete(cartsdata._id)}
                           className="font-semibold hover:text-red-500 text-gray-500 text-lg"
                         >
                           Remove
