@@ -27,7 +27,7 @@ const Category = () => {
                             <div className="mb-4">
                                 <p className="mb-[2px] text-white">Enjoy</p>
                                 <p className="text-2xl font-semibold mb-[2px]">With</p>
-                                <p className="text-4xl xl:text-5xl font-bold opacity-40 mb-2">Gadget</p>
+                                <p className="text-4xl xl:text-5xl font-bold opacity-40 mb-2">Case</p>
                                 <Button text="Browse" bgColor={'bg-white'} textColor={'text-brandYellow'} />
                             </div>
                         </div>
@@ -39,7 +39,7 @@ const Category = () => {
                             <div className="mb-4">
                                 <p className="mb-[2px] text-white">Enjoy</p>
                                 <p className="text-2xl font-semibold mb-[2px]">With</p>
-                                <p className="text-4xl xl:text-5xl font-bold opacity-40 mb-2">Laptop</p>
+                                <p className="text-4xl xl:text-5xl font-bold opacity-40 mb-2">Case</p>
                                 <Button text="Browse" bgColor={'bg-white'} textColor={'text-primary'} />
                             </div>
                         </div>
