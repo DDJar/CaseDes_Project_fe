@@ -15,7 +15,7 @@ const Category = () => {
                             <div className="mb-4">
                                 <p className="mb-[2px] text-gray-400">Enjoy</p>
                                 <p className="text-2xl font-semibold mb-[2px]">With</p>
-                                <p className="text-4xl xl:text-5xl font-bold opacity-20 mb-2">Earphone</p>
+                                <p className="text-4xl xl:text-5xl font-bold opacity-20 mb-2">Case</p>
                                 <Button text="Browse" bgColor={'bg-primary'} textColor={'text-white'} />
                             </div>
                         </div>
