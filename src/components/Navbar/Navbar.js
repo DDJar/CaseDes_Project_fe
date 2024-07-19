@@ -61,6 +61,18 @@ function NavBar() {
                     </a>
                   </li>
                 ))}
+                {userInfor && (
+                  <div>
+                    <li>
+                      <a
+                        href={"/design-phone-case"}
+                        className="inline-block px-4 font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200"
+                      >
+                        Design
+                      </a>
+                    </li>
+                  </div>
+                )}
                 {userInfor &&
                   userInfor.role &&
                   userInfor.role.some((role) => role.roleName === "ADMIN") && (

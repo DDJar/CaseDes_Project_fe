@@ -14,11 +14,6 @@ const MenuLinks = [
     name: "Template",
     link: "/template-phone-case",
   },
-  {
-    id: 4,
-    name: "Design",
-    link: "/design-phone-case",
-  },
 ];
 const DropdownLinks = [
   {
