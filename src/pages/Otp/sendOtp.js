@@ -10,11 +10,13 @@ const SendOTP = () => {
         emailOrPhone: emailOrPhone,
       };
       const response = await sendOtp(otpForm);
-      window.localStorage.setItem("inputType", response.data.emailOrPhone);
-      window.location.href = `/verify-otp`;
+      if (response.data.status === 200) {
+        window.localStorage.setItem("inputType", response.data.emailOrPhone);
+        window.location.href = `/verify-otp`;
+      }
     } catch (error) {
       console.error(error);
-      setError("Error sending verification code");
+      setError("Error sending verification code. Please check your email");
     }
   };
 
@@ -27,7 +29,7 @@ const SendOTP = () => {
               <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
                 Send OTP
               </h1>
-              <h2 className="text-danger"> {error && <p>{error}</p>}</h2>
+              <h2 className="text-red-700"> {error && <p>{error}</p>}</h2>
             </div>
 
             <div className="mt-5">
