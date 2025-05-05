@@ -10,8 +10,7 @@ const SendOTP = () => {
         emailOrPhone: emailOrPhone,
       };
       const response = await sendOtp(otpForm);
-       console.log(response.data);
-      if (response.data.status === 200) {
+      if (response.data.success) {
         window.localStorage.setItem("inputType", response.data.emailOrPhone);
         window.location.href = `/verify-otp`;
       }
